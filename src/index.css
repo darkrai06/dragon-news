@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* index.css or App.css */
+:root {
+  --primary-color: #3498db; /* Blue */
+  --secondary-color: #2ecc71; /* Green */
+  --text-color: #333333; /* Dark text */
+  --bg-color: #ffffff; /* Light background */
+}
+
+/* Applying the color to the body */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+a.active{
+  background-color: bisque;
+}
+
