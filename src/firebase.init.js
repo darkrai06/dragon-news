@@ -1,16 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 
-// Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC2Un5cuQUhSfRABfIwToUhOwE2CXPHP7A",
-  authDomain: "auth-dragon-16862.firebaseapp.com",
-  projectId: "auth-dragon-16862",
-  storageBucket: "auth-dragon-16862.appspot.com", // Fixed incorrect storage URL
-  messagingSenderId: "678901285590",
-  appId: "1:678901285590:web:3ce09fa31f4eac0a7bbf77"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
-// Initialize Firebase
+console.log("Firebase API Key:", import.meta.env.VITE_apiKey); // Debugging
+
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+export default app;

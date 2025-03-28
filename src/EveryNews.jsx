@@ -4,7 +4,6 @@ import { FaRegEye, FaStar } from "react-icons/fa";
 
 const EveryNews = () => {
   const data = useLoaderData();
-  console.log("News Data:", data);
 
   // Ensure data is accessible and not empty
   if (!data || !Array.isArray(data) || data.length === 0) {

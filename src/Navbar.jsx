@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { AuthContext } from './AuthProvider';
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
     return (
         <div className="navbar">
   <div className="navbar-start">
+  <div className='hidden md:block text-2xl font-bold pl-28'>
+  {user && user.email ? <h2>{user.email}</h2> : <h2>Guest</h2>}
+</div>
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
         <svg
@@ -36,7 +42,9 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn font-extrabold">Login</a>
+    {
+      user && user?.email ? (<button onClick={logOut} className='btn'>Sign Out</button>) : (<NavLink to={"/login"} className="btn font-extrabold">Login</NavLink>)
+    }
   </div>
 </div>
     );

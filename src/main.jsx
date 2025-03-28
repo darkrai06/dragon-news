@@ -14,6 +14,9 @@ import Login from "./Login";
 import Register from "./Register";
 import AllNews from "./AllNews";
 import EveryNews from "./EveryNews";
+import Auth from "./Auth";
+import AuthProvider from "./AuthProvider";
+import Private from "./Private";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +60,7 @@ const router = createBrowserRouter([
                     return [];
                   });
               } else {
-                console.log("Fetching News for Category ID:", categoryId.padStart(2, "0"));
+                console.log("Fetching News for Category ID");
                 return fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId.padStart(2, "0")}`)
                   .then(res => res.json())
                   .catch(err => {
@@ -71,7 +74,7 @@ const router = createBrowserRouter([
       },
       {
         path: "news/:newsId",
-        element: <News />,
+        element: <Private><News /></Private>,
         loader: async ({ params }) => {
           const response = await fetch('/news.json');
           if (!response.ok) {
@@ -86,19 +89,21 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/login",
-        element: <Login />,
+        path: "login",
+        element: <Auth></Auth>,
       },
       {
-        path: "/register",
-        element: <Register />,
-      },
+        path: "register",
+        element: <Register></Register>,
+      }
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <AuthProvider>
     <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );
